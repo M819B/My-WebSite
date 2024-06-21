@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Form | M819MC</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <style>
+    body {
+      background-image: url('bg.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .wrapper {
+      background: rgba(0, 0, 0, 0.8); /* Changed to black with some transparency */
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      color: white; /* Changed text color to white for better contrast */
+    }
+
+    #register-success-message, #register-error-message {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      padding: 20px;
+      background-color: #ADD8E6; /* light blue */
+      color: black;
+      font-size: 36px;
+      border-radius: 10px;
+    }
+
+    #ok-button, #ok-button-error {
+      background-color: green;
+      color: black;
+      padding: 15px 30px;
+      font-size: 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .photo-link {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    .photo-link img {
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+    }
+
+    .input-box {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1); /* Slightly transparent input background */
+      color: white; /* White text for inputs */
+    }
+
+    .input-box i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white; /* Icon color white */
+    }
+
+    .btn {
+      background-color: #333;
+      color: white;
+      padding: 15px 30px;
+      font-size: 24px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .login-link p, .login-link a {
+      color: white; /* White text for login link */
+    }
+  </style>
+</head>
+<body>
+  <div class="photo-link">
+    <a href="index.html">
+      <img src="bg.jpg" alt="Profile Photo">
+    </a>
+  </div>
+  <div class="wrapper">
+    <form id="signup-form">
+      <h1>Signup</h1>
+      <div class="input-box">
+        <input type="text" id="username" placeholder="Username" required>
+        <i class='bx bxs-user'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="password" placeholder="Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <div class="input-box">
+        <input type="password" id="confirm-password" placeholder="Confirm Password" required>
+        <i class='bx bxs-lock-alt'></i>
+      </div>
+      <button type="submit" class="btn">Signup</button>
+      <div class="login-link">
+        <p>Already have an account? <a href="index.html">Login</a></p>
+      </div>
+    </form>
+  </div>
+
+  <!-- New divs for displaying registration success and error messages -->
+  <div id="register-success-message">
+    <p>Registered Successfully</p>
+    <button id="ok-button">OK</button>
+  </div>
+
+  <div id="register-error-message">
+    <p>Username already exists. Please choose a different username.</p>
+    <button id="ok-button-error">OK</button>
+  </div>
+
+  <script>
+    document.getElementById('signup-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Get form input values
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      // Check if passwords match
+      if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+      }
+
+      // Check if username already exists in local storage
+      const existingUsername = localStorage.getItem('username');
+      if (existingUsername && existingUsername === username) {
+        // Show error message
+        document.getElementById('register-error-message').style.display = 'block';
+        return;
+      }
+
+      // Save data to local storage
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+
+      // Show registration success message
+      document.getElementById('register-success-message').style.display = 'block';
+    });
+
+    // Add event listener for the OK button (success message)
+    document.getElementById('ok-button').addEventListener('click', function() {
+      // Redirect to index.html
+      window.location.href = 'index.html';
+    });
+
+    // Add event listener for the OK button (error message)
+    document.getElementById('ok-button-error').addEventListener('click', function() {
+      // Hide the error message
+      document.getElementById('register-error-message').style.display = 'none';
+    });
+  </script>
+</body>
+</html>

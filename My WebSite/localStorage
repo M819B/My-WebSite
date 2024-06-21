@@ -1,0 +1,132 @@
+// Save user data to local storage
+function saveUserData(firstName, lastName, email) {
+    const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+// Retrieve user data from local storage
+function getUserData() {
+    const storedData = localStorage.getItem('userData');
+
+    if (storedData) {
+        return JSON.parse(storedData);
+    } else {
+        return null;
+    }
+}
+
+// Example usage:
+// Save user data when signing up or logging in
+saveUserData('John', 'Doe', 'john@example.com');
+
+// Retrieve user data when needed (e.g., on the home page)
+const userData = getUserData();
+if (userData) {
+    console.log(`Welcome back, ${userData.firstName} ${userData.lastName} (${userData.email})!`);
+} else {
+    console.log('No user data found.');
+}
+// Save user data to local storage
+function saveUserData(firstName, lastName, email) {
+    const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+// Retrieve user data from local storage
+function getUserData() {
+    const storedData = localStorage.getItem('userData');
+
+    if (storedData) {
+        return JSON.parse(storedData);
+    } else {
+        return null;
+    }
+}
+
+// Example usage:
+// Save user data when signing up or logging in
+saveUserData('John', 'Doe', 'john@example.com');
+
+// Retrieve user data when needed (e.g., on the home page)
+const userData = getUserData();
+if (userData) {
+    console.log(`Welcome back, ${userData.firstName} ${userData.lastName} (${userData.email})!`);
+} else {
+    console.log('No user data found.');
+}
+// Save user data to local storage
+function saveUserData(firstName, lastName, email) {
+    const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+// Retrieve user data from local storage
+function getUserData() {
+    const storedData = localStorage.getItem('userData');
+
+    if (storedData) {
+        return JSON.parse(storedData);
+    } else {
+        return null;
+    }
+}
+
+// Example usage:
+// Save user data when signing up or logging in
+saveUserData('John', 'Doe', 'john@example.com');
+
+// Retrieve user data when needed (e.g., on the home page)
+const userData = getUserData();
+if (userData) {
+    console.log(`Welcome back, ${userData.firstName} ${userData.lastName} (${userData.email})!`);
+} else {
+    console.log('No user data found.');
+}
+// Save user data to local storage
+function saveUserData(firstName, lastName, email) {
+    const userData = {
+        firstName: firstName,
+        lastName: lastName,
+        email: email
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+}
+
+// Retrieve user data from local storage
+function getUserData() {
+    const storedData = localStorage.getItem('userData');
+
+    if (storedData) {
+        return JSON.parse(storedData);
+    } else {
+        return null;
+    }
+}
+
+// Example usage:
+// Save user data when signing up or logging in
+saveUserData('John', 'Doe', 'john@example.com');
+
+// Retrieve user data when needed (e.g., on the home page)
+const userData = getUserData();
+if (userData) {
+    console.log(`Welcome back, ${userData.firstName} ${userData.lastName} (${userData.email})!`);
+} else {
+    console.log('No user data found.');
+}

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .profile-container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5em;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .reset-password-form {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .reset-password-form input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        .reset-password-form button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <h1>Profile Page</h1>
+        <p id="profile-name">Hello, </p>
+        <button class="back-button" onclick="goBack()">Back to Home</button>
+
+        <div class="reset-password-form">
+            <h2>Reset Password</h2>
+            <form id="reset-password-form">
+                <input type="password" id="current-password" placeholder="Current Password" required>
+                <input type="password" id="new-password" placeholder="New Password" required>
+                <input type="password" id="confirm-password" placeholder="Confirm New Password" required>
+                <button type="submit">Reset Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                username: params.get('username')
+            };
+        }
+
+        // Display the username on the profile page
+        window.onload = function() {
+            const queryParams = getQueryParams();
+            const profileName = document.getElementById('profile-name');
+            if (queryParams.username) {
+                profileName.textContent += queryParams.username;
+            } else {
+                profileName.textContent = 'User not logged in';
+            }
+
+            document.getElementById('reset-password-form').addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const currentPassword = document.getElementById('current-password').value;
+                const newPassword = document.getElementById('new-password').value;
+                const confirmPassword = document.getElementById('confirm-password').value;
+
+                const storedPassword = localStorage.getItem('password');
+
+                if (currentPassword === storedPassword) {
+                    if (newPassword === confirmPassword) {
+                        localStorage.setItem('password', newPassword);
+                        alert('Password successfully reset. Please log in with your new password.');
+                        window.location.href = 'index.html';
+                    } else {
+                        alert('New Password and Confirm Password do not match.');
+                    }
+                } else {
+                    alert('Current Password is incorrect.');
+                }
+            });
+        }
+
+        // Function to go back to home page
+        function goBack() {
+            const queryParams = getQueryParams();
+            if (queryParams.username) {
+                window.location.href = 'home.html?username=' + encodeURIComponent(queryParams.username);
+            } else {
+                window.location.href = 'home.html';
+            }
+        }
+    </script>
+</body>
+</html>
